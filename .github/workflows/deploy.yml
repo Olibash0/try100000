@@ -4,6 +4,12 @@ on:
   push:
     branches: [ main ]
 
+# Даём необходимые разрешения GITHUB_TOKEN
+permissions:
+  contents: write
+  id-token: write
+  pages: write
+
 jobs:
   test-and-deploy:
     runs-on: ubuntu-latest
@@ -14,6 +20,16 @@ jobs:
 
       - name: Run tests
         run: bash test.sh
+
+      - name: Setup Pages
+        if: success()
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        if: success()
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'   # загружаем все файлы из корня репозитория
 
       - name: Deploy to GitHub Pages
         if: success()
