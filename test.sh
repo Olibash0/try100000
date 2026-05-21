@@ -2,7 +2,7 @@
 echo "Запуск тестов..."
 
 # Ищем ключевое слово "Привет" в файле index.html
-if grep -q "Пока" index.html; then
+if grep -q "Пка" index.html; then
     echo " Тест пройден: Слово 'Пока' найдено на странице."
     exit 0
 else
